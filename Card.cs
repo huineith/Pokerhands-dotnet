@@ -15,3 +15,8 @@ public class Card
         return $"{Rank}{Suit}";
     }
 }
+
+
+
+
+
