@@ -74,7 +74,7 @@ public void TestCheckHighestHandHandlesWinAndTieCorrectly(int winningHandId,  st
         }
 
        var result= CompareHands.CompareHighestCard(handOne,handTwo); 
-       bool correctResult=result==winningHand;   
+       bool correctResult= result==winningHand;   
         //Assert
         Assert.True(correctResult); 
     }
@@ -97,7 +97,7 @@ public void TestCheckHighestHandHandlesWinAndTieCorrectly(int winningHandId,  st
    
        Hand pairHand=  GenerateHandOfCards(cardsInfo); 
        var result= CompareHands.IsPair(pairHand);
-       bool ContainsPair= result==pairHand ;  
+       bool ContainsPair= result.hand ==pairHand ;  
         //Assert
         Assert.True(ContainsPair); 
     }
@@ -118,7 +118,7 @@ public void TestCheckHighestHandHandlesWinAndTieCorrectly(int winningHandId,  st
    
        Hand pairHand=  GenerateHandOfCards(cardsInfo); 
        var result= CompareHands.IsPair(pairHand);
-       bool ContainPair= result==pairHand ;  
+       bool ContainPair= result.hand==pairHand ;  
         //Assert
         Assert.False(ContainPair); 
     }
@@ -138,7 +138,7 @@ public void testIsTwoPairsTrueAndFalseCases(bool isTwoPairs,string[] cardsInfo){
         // Act 
        Hand pairHand=  GenerateHandOfCards(cardsInfo); 
        var result= CompareHands.IsTwoPair(pairHand);
-       bool containsTwoPairs= result==pairHand; 
+       bool containsTwoPairs= result.hand==pairHand; 
        bool correctResult = containsTwoPairs == isTwoPairs;   
         //Assert
         Assert.True(correctResult); 
@@ -156,7 +156,7 @@ public void testIsThreeofAKindTrueAndFalseCases(bool expectedResult,string[] car
         // Act 
        Hand PlayerHand=  GenerateHandOfCards(cardsInfo); 
        var result= CompareHands.IsThreeOfAKind(PlayerHand);
-       bool containsThreeOfAKind= result==PlayerHand; 
+       bool containsThreeOfAKind= result.hand==PlayerHand; 
        bool correctResult = containsThreeOfAKind ==  expectedResult;   
         //Assert
         Assert.True(correctResult); 
@@ -175,7 +175,7 @@ public void testIsStraightTrueAndFalseCases( bool expectedResult,string[] cardsI
         // Act 
        Hand PlayerHand=  GenerateHandOfCards(cardsInfo); 
        var result= CompareHands.IsStraight(PlayerHand);
-       bool containsStraight= result==PlayerHand; 
+       bool containsStraight= result.hand==PlayerHand; 
        bool correctResult = containsStraight ==  expectedResult;   
         //Assert
         Assert.True(correctResult); 
@@ -195,7 +195,7 @@ public void testIsFlushTrueAndFalseCases( bool expectedResult,string[] cardsInfo
         // Act 
        Hand PlayerHand=  GenerateHandOfCards(cardsInfo); 
        var result= CompareHands.IsFlush(PlayerHand);
-       bool containsFlush= result==PlayerHand; 
+       bool containsFlush= result.hand==PlayerHand; 
        bool correctResult = containsFlush ==  expectedResult;   
         //Assert
         Assert.True(correctResult); 
@@ -215,7 +215,7 @@ public void testIsFullHouseTrueAndFalseCases( bool expectedResult,string[] cards
         // Act 
        Hand PlayerHand=  GenerateHandOfCards(cardsInfo); 
        var result= CompareHands.IsFullHouse(PlayerHand);
-       bool containsFullHouse= result==PlayerHand; 
+       bool containsFullHouse= result.hand==PlayerHand; 
        bool correctResult = containsFullHouse ==  expectedResult;   
         //Assert
         Assert.True(correctResult); 
@@ -234,7 +234,7 @@ public void testIsForOfAKindTrueAndFalseCases( bool expectedResult,string[] card
         // Act 
        Hand PlayerHand=  GenerateHandOfCards(cardsInfo); 
        var result= CompareHands.IsFourOfAKind(PlayerHand);
-       bool containsFourOfAKind= result==PlayerHand; 
+       bool containsFourOfAKind= result.hand==PlayerHand; 
        bool correctResult = containsFourOfAKind ==  expectedResult;   
         //Assert
         Assert.True(correctResult); 
@@ -255,7 +255,7 @@ public void testIsStraightFlushTrueAndFalseCases( bool expectedResult,string[] c
         // Act 
        Hand PlayerHand=  GenerateHandOfCards(cardsInfo); 
        var result= CompareHands.IsStraightFlush(PlayerHand);
-       bool containsStraightFlush= result==PlayerHand; 
+       bool containsStraightFlush= result.hand==PlayerHand; 
        bool correctResult = containsStraightFlush ==  expectedResult;   
         //Assert
         Assert.True(correctResult); 
@@ -276,7 +276,7 @@ public void testIsRoyalFlushTrueAndFalseCases( bool expectedResult,string[] card
         // Act 
        Hand PlayerHand=  GenerateHandOfCards(cardsInfo); 
        var result= CompareHands.IsRoyalFlush(PlayerHand);
-       bool containsRoyalFlush= result==PlayerHand; 
+       bool containsRoyalFlush= result.hand==PlayerHand; 
        bool correctResult = containsRoyalFlush ==  expectedResult;   
         //Assert
         Assert.True(correctResult); 
@@ -297,7 +297,7 @@ public void testIsRoyalStraightFlushTrueAndFalseCases( bool expectedResult,strin
         // Act 
        Hand PlayerHand=  GenerateHandOfCards(cardsInfo); 
        var result= CompareHands.IsRoyalStraightFlush(PlayerHand);
-       bool containsRoyalStraightFlush= result==PlayerHand; 
+       bool containsRoyalStraightFlush= result.hand==PlayerHand; 
        bool correctResult = containsRoyalStraightFlush ==  expectedResult;   
         //Assert
         Assert.True(correctResult); 
