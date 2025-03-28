@@ -25,9 +25,16 @@ public class PokerTest{
     [InlineData(0, new string[]{"♠2","♠3","♠4","♠5","♠7"},new string[]{ "♥3","♦2","♥4","♦5","♦6"} )]
     [InlineData(2, new string[]{"♠2","♦3","♠4","♠5","♠7"},new string[]{ "♥3","♦2","♥4","♦5","♦7"} )]
 // winning on a pair both sides and tie, 
-  [InlineData(0,new string[]{ "♥2","♦2","♥4","♦5","♦6"}, new string[]{"♠2","♠3","♠4","♠5","♠7"} )] 
-  [InlineData(1, new string[]{"♠2","♠3","♠4","♠5","♠7"},new string[]{ "♥3","♦3","♥4","♦5","♦6"} )]
-  [InlineData(2, new string[]{"♠3","♣3","♠4","♠5","♠7"},new string[]{ "♥3","♦3","♥4","♦5","♦7"} )] 
+  [InlineData(0,new string[]{ "♥2","♦2","♥4","♦5","♦6"}, new string[]{"♠2","♠3","♣d4","♠5","♠7"} )] 
+  [InlineData(1, new string[]{"♠2","♣3","♠4","♠5","♠7"},new string[]{ "♥3","♦3","♥4","♦5","♦6"} )]
+
+//Specified Cases 
+[InlineData(1,new string[]{ "♥2","♦2","♥4","♦5","♦6"}, new string[]{"♠2","♠2","♣d4","♠4","♠7"} )]
+[InlineData(0,new string[]{ "♠T", "♠J", "♠Q", "♠K", "♠A"}, new string[]{"♠7","♠2","♣7","♥7","♦7"} )]
+[InlineData(0,new string[]{ "♠T", "♠J", "♠7", "♠K", "♠2"}, new string[]{"♥8","♥3","♥7","♥D","♥J"} )]
+[InlineData(2, new string[]{"♠3","♣3","♠4","♠5","♠7"},new string[]{ "♥3","♦3","♥4","♦5","♦7"} )] 
+// Should add more test for all cases of diffrent varients of hands but I do not see much benefit to learning to do so i'll end here.  
+   
 public void TestCheckHighestHandHandlesWinAndTieCorrectly(int winningHandId,  string[] cardInfoHandOne,string[] cardInfoHandTwo   ){
       Hand handOne= GenerateHandOfCards(cardInfoHandOne);
         Hand handTwo= GenerateHandOfCards(cardInfoHandTwo);
