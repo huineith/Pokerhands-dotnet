@@ -44,15 +44,11 @@ public class PokerTest{
     }
 
 
-private List<Card> GenerateListOfCards(string[] cardsInfo){
+public static List<Card> GenerateListOfCards(string[] cardsInfo){
    List<Card> cards= new(); 
-    System.Console.WriteLine(cardsInfo.Length);
-    char[] info; 
+
     foreach( string card in cardsInfo ){ 
-    
-        info= card.ToCharArray();
-        System.Console.WriteLine(info[1]+" "+info[2]); 
-        cards.Add(new Card(info[0],info[1])); 
+        cards.Add(new Card(card[0],card[1])); 
     }
 
     return cards; 
