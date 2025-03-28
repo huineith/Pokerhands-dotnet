@@ -27,12 +27,12 @@ public class PokerTest{
 // winning on a pair both sides and tie, 
   [InlineData(0,new string[]{ "♥2","♦2","♥4","♦5","♦6"}, new string[]{"♠2","♠3","♣d4","♠5","♠7"} )] 
   [InlineData(1, new string[]{"♠2","♣3","♠4","♠5","♠7"},new string[]{ "♥3","♦3","♥4","♦5","♦6"} )]
+[InlineData(2, new string[]{"♠3","♣3","♠4","♠5","♠7"},new string[]{ "♥3","♦3","♥4","♦5","♦7"} )] 
 
 //Specified Cases 
 [InlineData(1,new string[]{ "♥2","♦2","♥4","♦5","♦6"}, new string[]{"♠2","♠2","♣d4","♠4","♠7"} )]
 [InlineData(0,new string[]{ "♠T", "♠J", "♠Q", "♠K", "♠A"}, new string[]{"♠7","♠2","♣7","♥7","♦7"} )]
 [InlineData(0,new string[]{ "♠T", "♠J", "♠7", "♠K", "♠2"}, new string[]{"♥8","♥3","♥7","♥D","♥J"} )]
-[InlineData(2, new string[]{"♠3","♣3","♠4","♠5","♠7"},new string[]{ "♥3","♦3","♥4","♦5","♦7"} )] 
 // Should add more test for all cases of diffrent varients of hands but I do not see much benefit to learning to do so i'll end here.  
    
 public void TestCheckHighestHandHandlesWinAndTieCorrectly(int winningHandId,  string[] cardInfoHandOne,string[] cardInfoHandTwo   ){
@@ -88,11 +88,13 @@ public void TestCheckHighestHandHandlesWinAndTieCorrectly(int winningHandId,  st
     //--------------------- helper methods---------------------------------// 
 
 [Theory]
-    [InlineData(1,new string[]{"♥2","♦2","♥4","♦5","♦6"})] 
-    [InlineData(1,new string[]{"♥8","♦8","♥4","♦5","♦6"})]
-    [InlineData(1,new string[]{"♥2","♦2","♥T","♦T","♦6"})]  
-
-    public void TestIsPairHelperMethodTrue(int fakeParameter,string[] cardsInfo){
+    [InlineData(true,new string[]{"♥2","♦2","♥4","♦5","♦6"})] 
+    [InlineData(true,new string[]{"♥8","♦8","♥4","♦5","♦6"})]
+    [InlineData(true,new string[]{"♥2","♦2","♥T","♦T","♦6"})]  
+    [InlineData(false,new string[]{"♥3","♦2","♥4","♦5","♦6"})] 
+    [InlineData(false,new string[]{"♥3","♦8","♥4","♦5","♦6"})]
+    [InlineData(false,new string[]{"♥3","♦2","♥9","♦T","♦6"})]  
+    public void TestIsPairHelperMethod(bool expectPair,string[] cardsInfo){
         //need fake parameter to be able to pass a list    
         // Arrange 
 
@@ -100,34 +102,13 @@ public void TestCheckHighestHandHandlesWinAndTieCorrectly(int winningHandId,  st
         //var ranks = new char[]{'2','2','4','5','6'}; 
         //var suits=new char[]{'♥','♦','♥','♦','♦'}; 
         
-        int i =fakeParameter; 
-   
+        
        Hand pairHand=  GenerateHandOfCards(cardsInfo); 
        var result= CompareHands.IsPair(pairHand);
        bool ContainsPair= result.hand ==pairHand ;  
+       bool exepectedResult=ContainsPair== expectPair; 
         //Assert
-        Assert.True(ContainsPair); 
-    }
-
-[Theory]
-    [InlineData(1,new string[]{"♥3","♦2","♥4","♦5","♦6"})] 
-    [InlineData(1,new string[]{"♥3","♦8","♥4","♦5","♦6"})]
-    [InlineData(1,new string[]{"♥3","♦2","♥9","♦T","♦6"})]  
-    public void TestIsPairHelperMethodFalse(int fakeParameter,string[] cardsInfo){
-        //need fake parameter to be able to pass a list    
-        // Arrange 
-
-        // Act 
-        //var ranks = new char[]{'2','2','4','5','6'}; 
-        //var suits=new char[]{'♥','♦','♥','♦','♦'}; 
-        
-        int i =fakeParameter; 
-   
-       Hand pairHand=  GenerateHandOfCards(cardsInfo); 
-       var result= CompareHands.IsPair(pairHand);
-       bool ContainPair= result.hand==pairHand ;  
-        //Assert
-        Assert.False(ContainPair); 
+        Assert.True(exepectedResult); 
     }
 
 
@@ -236,7 +217,7 @@ public void testIsFullHouseTrueAndFalseCases( bool expectedResult,string[] cards
  [InlineData(false,new string[]{ "♦2", "♠7", "♣3", "♥K", "♦J"})]
  [InlineData(false,new string[]{ "♠4", "♣10", "♦9", "♥7", "♠Q"})]
  [InlineData(false,new string[]{ "♥5", "♠3", "♦K", "♣8", "♦J"})]
-public void testIsForOfAKindTrueAndFalseCases( bool expectedResult,string[] cardsInfo){
+public void testIsFourOfAKindTrueAndFalseCases( bool expectedResult,string[] cardsInfo){
         // Arrange 
         // Act 
        Hand PlayerHand=  GenerateHandOfCards(cardsInfo); 
@@ -273,7 +254,7 @@ public void testIsStraightFlushTrueAndFalseCases( bool expectedResult,string[] c
 
 [Theory] 
  [InlineData(true,new string[]{ "♠A", "♠K", "♠Q", "♠J", "♠T"})]
- [InlineData(true,new string[]{"♦A", "♦K", "♦Q", "♦J", "♦T"})]
+ [InlineData(false,new string[]{"♦9", "♦K", "♦Q", "♦J", "♦T"})]
  [InlineData(true,new string[]{ "♥A", "♥K", "♥Q", "♥J", "♥T"})]
  [InlineData(false,new string[]{ "♦2", "♠7", "♣3", "♥K", "♦J"})]
  [InlineData(false,new string[]{ "♠4", "♣10", "♦9", "♥7", "♠Q"})]
@@ -294,7 +275,7 @@ public void testIsRoyalFlushTrueAndFalseCases( bool expectedResult,string[] card
 
 [Theory] 
  [InlineData(true,new string[]{ "♠A", "♠K", "♠Q", "♠J", "♠T"})]
- [InlineData(true,new string[]{"♦A", "♦K", "♦Q", "♦J", "♦T"})]
+ [InlineData(false,new string[]{"♦9", "♦K", "♦Q", "♦J", "♦T"})]
  [InlineData(true,new string[]{ "♥A", "♥K", "♥Q", "♥J", "♥T"})]
  [InlineData(false,new string[]{ "♦2", "♠7", "♣3", "♥K", "♦J"})]
  [InlineData(false,new string[]{ "♠4", "♣10", "♦9", "♥7", "♠Q"})]
