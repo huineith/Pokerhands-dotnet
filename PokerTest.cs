@@ -7,17 +7,18 @@ namespace CardGame;
 public class PokerTest{
 
 [Fact]
-
     public void TestIsPairHelperMethodTrue(){
 
+    
         // Arrange 
 
         // Act 
-        var ranks = new char[]{'2','2','4','5','6'}; 
-        var suits=new char[]{'♥','♦','♥','♦','♦'}; 
-        List<Card> cards= GenerateListOfCards(suits,ranks) ;
+        //var ranks = new char[]{'2','2','4','5','6'}; 
+        //var suits=new char[]{'♥','♦','♥','♦','♦'}; 
+        var cardsInfo= new string[]{"♥2","♦2","♥4","♦5","♦6"};
+        System.Console.WriteLine(cardsInfo.Length);
+        List<Card> cards= GenerateListOfCards(cardsInfo) ;
 
-        Assert.Equals(cards.Count==5);  
         Hand pairHand=  new Hand(cards); 
        var result= CompareHands.IsPair(pairHand);
        bool doesNotContainPair= result is null;  
@@ -30,11 +31,11 @@ public class PokerTest{
         // Arrange 
 
         // Act 
-        var ranks = new char[]{'2','3','4','5','6'}; 
-        var suits=new char[]{'♥','♦','♥','♦','♦'}; 
-        List<Card> cards= GenerateListOfCards(suits,ranks) ;
-        Assert.Equals(cards.Count==5); 
-        
+        //var ranks = new char[]{'2','3','4','5','6'}; 
+        //var suits=new char[]{'♥','♦','♥','♦','♦'}; 
+         var cardsInfo= new string[]{"♥2","♦3","♥4","♦5","♦6"};
+        List<Card> cards= GenerateListOfCards(cardsInfo) ;
+   
         Hand pairHand=  new Hand(cards); 
        var result= CompareHands.IsPair(pairHand);
        bool doesNotContainPair= result is null;  
@@ -43,14 +44,15 @@ public class PokerTest{
     }
 
 
-private List<Card> GenerateListOfCards(char[] suits, char[] values){
+private List<Card> GenerateListOfCards(string[] cardsInfo){
    List<Card> cards= new(); 
-
-    if(suits.Length != values.Length){
-        return cards; 
-    } 
-    for(int i=0 ; i <suits.Length; i++ ){ 
-        cards.Add(new Card(suits[i],values[i])); 
+    System.Console.WriteLine(cardsInfo.Length);
+    char[] info; 
+    foreach( string card in cardsInfo ){ 
+    
+        info= card.ToCharArray();
+        System.Console.WriteLine(info[1]+" "+info[2]); 
+        cards.Add(new Card(info[0],info[1])); 
     }
 
     return cards; 
