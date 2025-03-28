@@ -3,14 +3,23 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
+<<<<<<< HEAD
     <GenerateProgramFile>False</GenerateProgramFile>
+=======
+    <GenerateProgramFile>false</GenerateProgramFile>
+>>>>>>> e0181c99ee214417b75ee5c6069494784c438a79
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <PackageReference Include="Microsoft.Net.Test.Sdk" Version="17.13.0" />
     <PackageReference Include="xUnit" Version="2.9.3" />
+=======
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+>>>>>>> e0181c99ee214417b75ee5c6069494784c438a79
     <PackageReference Include="xunit.runner.visualstudio" Version="3.0.2">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
