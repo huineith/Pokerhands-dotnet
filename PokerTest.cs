@@ -35,7 +35,7 @@ public class PokerTest{
 [InlineData(0,new string[]{ "♠T", "♠J", "♠7", "♠K", "♠2"}, new string[]{"♥8","♥3","♥7","♥D","♥J"} )]
 // Should add more test for all cases of diffrent varients of hands but I do not see much benefit to learning to do so i'll end here.  
    
-public void TestCheckHighestHandHandlesWinAndTieCorrectly(int winningHandId,  string[] cardInfoHandOne,string[] cardInfoHandTwo   ){
+public void TestCheckHandHandlesWinAndTieCorrectly(int winningHandId,  string[] cardInfoHandOne,string[] cardInfoHandTwo   ){
       Hand handOne= GenerateHandOfCards(cardInfoHandOne);
         Hand handTwo= GenerateHandOfCards(cardInfoHandTwo);
         Hand[] PlayerHands = new Hand[]{handOne,handTwo}; 
